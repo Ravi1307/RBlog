@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   post '/:user/posts/new', :to => 'posts#create';
   post '/:user/posts/edit', :to => 'posts#update';
+  post '/contact', :to => 'posts#send_contact_form';
   
   root 'posts#home';
   

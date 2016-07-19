@@ -115,4 +115,14 @@ class PostsController < ApplicationController
     
   end
   
+  def send_contact_form
+    
+    @currentPage = 'contact';
+    
+    RblogMailer.contact_form(params[:contact]).deliver_later;
+    
+    render 'contact';
+    
+  end
+  
 end

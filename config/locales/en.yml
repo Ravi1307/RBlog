@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  
   hello: "Hello world"
+  
+  rblog_mailer:
+    
+    contact_form:
+      subject: "RBlog Contact Form!"
+      
+    
+    user_registered:
+      subject: "RBlog Registration Complete!"
+    
+    

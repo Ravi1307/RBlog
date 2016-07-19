@@ -61,7 +61,7 @@
 	    			<h4 class='links link_my_posts'> <%= link_to("CREATE NEW POST", {:controller => 'posts', :action => 'new', :user => session[:username]}) %> </h4>
 	                <h4 class='links link_my_posts'> <%= link_to("EDIT PROFILE", {:controller => 'account', :action => 'edit', :user => session[:username]}) %> </h4>
 	               	
-            	<% elsif @currentPage == 'home' %>
+            	<% elsif @currentPage == 'home' || @currentPage == 'show' %>
 	            	
 	            	<% if session[:username] %>
 	            		
@@ -92,15 +92,11 @@
     	</div> <!-- end of left column -->
 
   		<%= yield :body %>
-  	    	
+  	    
 		<div class="cleaner_h20"></div>
-  	
-  		<div id="rblog_footer">
-    	
-			Copyright &copy; 2016
-        
-    	</div>
-  
+  		
+  		<div id="rblog_footer"> Ravikanth, Ruby On Rails Project &reg; 2016 </div>
+  		
    </div> <!-- end of wrapper -->
 
   </body>

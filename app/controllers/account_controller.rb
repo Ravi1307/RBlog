@@ -22,6 +22,8 @@ class AccountController < ApplicationController
       
       onLogIn(@user);
       
+      RblogMailer.user_registered(@user).deliver_now;
+      
       redirect_to(:controller => 'account', :action => 'edit', :user => @user.username) and return;
       
     else
