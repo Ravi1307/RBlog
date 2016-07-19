@@ -1,0 +1,49 @@
+<% content_for :head do %>	
+	
+	<title> <%= ((@currentPage == 'new_post') ? 'NewPost' : 'EditPost') %> :: RBlog</title>
+	
+<% end %>
+
+<% content_for :body do %>
+	
+    <div id="rblog_right_column">
+        
+        <div id="rblog_main">
+        
+        	<div class="post_section post_section_form">
+        		
+        		<h2> <%= ((@currentPage == 'new_post') ? 'New Post' : 'Edit Post') %> </h2>
+        		
+	        	<% if @rPost && @rPost.errors.any? %>
+	        		
+	        		<ul class="error_messages">
+	        			
+	        			<% @rPost.errors.full_messages.each do |error_message| %>
+	        				
+	        				<li> <%= error_message %> </li>
+	        				
+	        			<% end %>
+	        			
+	        		</ul>
+	        		
+	        	<% end %>
+	        	
+        		<%= form_for(:blog_post, :method => 'post', :url => ((@currentPage == 'new_post') ? {:controller => 'posts', :action => 'create', :user => session[:username]} : {:controller => 'posts', :action => 'update', :user => session[:username], :postId => @rPost.id})) do |form| %>
+        			
+        			<%= form.text_field(:account_id, :placeholder => "Account Id", :type => 'number', :value => session[:userId].to_i, :hidden => true) %>
+        			<%= form.text_field(:post_title, :placeholder => "Blog Post Title", :value => (@rPost ? @rPost.post_title : '')) %>
+        			<%= form.text_area(:post_message, :placeholder => "Blog Post Message", :value => (@rPost ? @rPost.post_message : '')) %>
+        			
+        			<div class="cleaner_h10"></div>
+        			
+        			<%= form.submit(:class => "submit", :value => ((@currentPage == 'new_post') ? 'Post' : 'Update')) %>
+        			
+        		<% end %>
+        		
+        	</div>
+        	
+        </div> <!-- end of main -->
+        
+    </div> <!-- end of right column -->
+	
+<% end %>

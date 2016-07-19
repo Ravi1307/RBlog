@@ -1,4 +1,32 @@
 Rails.application.routes.draw do
+  
+  get '/login', :to => 'account#login';
+  get '/register', :to => 'account#new';
+  get '/logout', :to => 'account#logout';
+  get '/:user/profile', :to => 'account#edit';
+  get '/:user/delete_account', :to => 'account#destroy';
+  get '/:user/change_password', :to => 'account#change_password';
+  
+  post '/register', :to => 'account#create';
+  post '/login', :to => 'account#attempt_login';
+  post '/:user/profile', :to => 'account#update';
+  post '/:user/change_password', :to => 'account#update_password';
+    
+  get '/posts', :to => 'posts#home';
+  get '/about', :to => 'posts#about';
+  get '/contact', :to => 'posts#contact';
+  get '/posts/show', :to => 'posts#show';
+  get '/site_map', :to => 'posts#site_map';
+  get '/:user/posts/new', :to => 'posts#new';
+  get '/:user/posts', :to => 'posts#my_posts';
+  get '/:user/posts/edit', :to => 'posts#edit';
+  get '/:user/posts/delete', :to => 'posts#destroy';
+
+  post '/:user/posts/new', :to => 'posts#create';
+  post '/:user/posts/edit', :to => 'posts#update';
+  
+  root 'posts#home';
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

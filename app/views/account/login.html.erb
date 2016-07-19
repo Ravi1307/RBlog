@@ -1,0 +1,52 @@
+<% content_for :head do %>
+	
+	<title>Log In :: RBlog</title>
+	
+<% end %>
+
+<% content_for :body do %>
+	
+	<div id="rblog_right_column">
+    	
+       	<div id="rblog_main">
+        	
+        	<div class="post_section post_section_form_login">
+            
+                <h2>Log In Form</h2>
+                
+	        	<% if @user && @user.errors.any? %>
+	        		
+	        		<ul class="error_messages">
+	        			
+	        			<% @user.errors.full_messages.each do |error_message| %>
+	        				
+	        				<li> <%= error_message %> </li>
+	        				
+	        			<% end %>
+	        			
+	        		</ul>
+	        		
+	        	<% end %>
+	        	
+	        	<%= form_for(:account, :url => {:controller => 'account', :action => 'attempt_login'}) do |form| %>
+	        		
+	        		<%= form.text_field(:email_address, :placeholder => 'someone@example.com', :type => 'email', :maxLength => 100, :required => true, :value => (@user ? @user.email_address : ''), :class => 'input_email_address') %>
+	        		<div class='input_container'> <%= form.password_field(:password, :placeholder => 'Password', :maxLength => 30, :required => true, :class => 'input_password', :id => 'input_password') %> <%= link_to(image_tag('/assets/rblog_password_secure.png', :class=>'input_password_image', :id=>'input_password_image', :alt=>'secure'), {:controller => 'account', :action => 'login'}, :id => 'input_password_toggle', :tabindex => '-1', :onclick => "togglePasswordType(); return false;") %> </div>
+	        		
+        			<div class="cleaner_h10"></div>
+        			
+	        		<%= form.submit("Reset", :type => 'reset', :class => 'reset') %>
+	        		<%= form.submit("Log In", :type => 'submit', :class => 'submit') %>
+	        		
+	        	<% end %>
+	        	
+    			<div class="cleaner_h10"></div>
+    			
+	        </div>
+	        	
+        </div> <!-- end of main -->
+	
+  	</div> <!-- end of right column -->
+
+	    
+<% end %>

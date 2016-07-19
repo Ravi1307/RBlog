@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+  	
+	<%= favicon_link_tag '/assets/rblog_icon.ico' %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= yield :head %>
+  	
+  	<script type="text/javascript">
+  		
+  		function togglePasswordType() {
+  			
+  			var password = document.getElementById('input_password');
+		    var passwordImage = document.getElementById('input_password_image');
+		    
+		    if(password.type == 'text') {
+		  		
+		  		passwordImage.src = '/assets/rblog_password_secure';
+		  		password.type = 'password';
+		  		password.focus();
+		  		password.selectionStart = password.value.length;
+		  		
+		  	} else {
+		  		
+		  		password.type = 'text';
+		  		passwordImage.src = '/assets/rblog_password_not_secure';
+		  		password.focus();
+		  		password.selectionStart = password.value.length;
+		  		
+		  	}
+		  	
+		}
+  		
+  	</script>
+  	
+  </head>
+  
+  <body>
+  	
+  	<div id="rblog_wrapper">
+		
+		<div id="rblog_menu">
+        	
+        	<% unless @currentPage == 'new' %>
+	        	
+	        	<div id="rblog_menu_account">
+	        		
+	        		<ul>
+	        			<li>
+			        			
+			        		<% unless @currentPage == 'login' %>
+				        		
+		        				<%= link_to((session[:userStatus] ? session[:userStatus] : 'Log In'), {:controller => 'account', :action => (session[:userAction] ? session[:userAction] : 'login')}) %>
+	        					
+	        				<% else %>
+	        					
+	        					<%= link_to('Sign Up', {:controller => 'account', :action => 'new'}) %>
+	        					
+	        				<% end %>
+	        				
+	        			</li>
+	        		</ul>
+	        		
+	        	</div>
+	        	
+        	<% end %>
+        	
+       		<ul>
+           		<li> <%= link_to("Home", {:controller => 'posts', :action => 'home'}) %> </li>
+           		<li> <%= link_to("Sitemap", {:controller => 'posts', :action => 'site_map'}) %> </li>
+           		<li> <%= link_to("About", {:controller => 'posts', :action => 'about'}) %> </li>
+           		<li> <%= link_to("Contact", {:controller => 'posts', :action => 'contact'}) %> </li>
+        	</ul>
+    		
+    	</div> <!-- end of menu -->
+    	
+        <div id="rblog_left_column">
+    
+        	<div id="rblog_header">
+        	
+            	<div id="site_title">
+                	
+                	<h1>
+                		
+                		<% if session[:username] %>
+	                		
+	                		<%= link_to(simple_format("R<strong>Blog</strong> <span>#{session[:username]}</span>"), {:controller => 'posts', :action => 'my_posts', :user => session[:username]}, :class => 'title') %>
+	                		
+	                	<% else %>
+	                		
+	                		<%= link_to(simple_format("R<strong>Blog</strong> <span>This is a blog</span>"), {:controller => 'posts', :action => 'home'}, :class => 'title') %>
+	                		
+	                	<% end %>
+	                	
+                	</h1>
+            		
+            	</div> <!-- end of site title -->
+            	
+        	</div> <!-- end of header -->  
+        	
+        	
+        	<div id="rblog_sidebar">
+    			
+    			<% if @currentPage == 'profile' && @updateStatus == false %>
+	    			
+	            	<h4 class='links link_my_posts'> <%= link_to("MY POSTS", {:controller => 'posts', :action => 'my_posts', :user => session[:username]}) %> </h4>
+	            	<h4 class='links link_my_posts'> <%= link_to("CHANGE PASSWORD", {:controller => 'account', :action => 'change_password'}) %> </h4>
+	            	<h4 class="link_my_posts links"><%= link_to("DELETE ACCOUNT", {:controller => 'account', :action => 'destroy', :userId => session[:userId]}) %> </h4>
+	            	
+            	<% end %>
+            	
+           </div> <!-- end of side bar -->
+            
+        	<div class="cleaner_h60"></div>
+    
+    	</div> <!-- end of left column -->
+
+  		<%= yield :body %>
+  	    
+		<div class="cleaner_h20"></div>
+  	
+  		<div id="rblog_footer" style="">
+    	
+			Copyright &copy; 2016
+        
+    	</div>
+  
+   </div> <!-- end of wrapper -->
+
+  </body>
+  
+</html>

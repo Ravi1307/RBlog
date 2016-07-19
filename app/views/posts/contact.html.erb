@@ -1,0 +1,37 @@
+<% content_for :head do %>
+	
+	<title>Contact :: RBlog</title>
+	
+<% end %>
+
+<% content_for :body do %>
+	
+    <div id="rblog_right_column">
+    
+        <div id="rblog_main">
+            
+            <div class="post_section post_section_form">
+            	
+                <h2>Contact Form</h2>
+                
+                <%= form_for(:contact, :url => {:controller => 'posts', :action => 'home'}, :method => 'post') do |form| %>
+                	
+                	<%= form.text_field(:name, :placeholder => "Name", :required => true) %>
+        			<%= form.text_field(:email, :placeholder => "someone@example.com", :required => true) %>
+        			<%= form.text_area(:message, :placeholder => "Message", :required => true) %>
+        			
+        			<div class="cleaner_h10"></div>
+        			
+        			<%= form.submit(:class => "submit", :type => 'submit', :value => 'Submit') %>
+        			<%= form.submit(:class => "reset", :type => 'reset', :value => 'Reset') %>
+        			
+        		<% end %>
+        		
+            </div> 
+        
+        </div> <!-- end of main -->
+    	
+    </div> <!-- end of right column -->
+
+<% end %>
+

@@ -1,0 +1,29 @@
+<% content_for :head do %>	
+	
+	<title><%= @rPost.post_title %> :: RBlog</title>
+	
+<% end %>
+
+<% content_for :body do %>
+	
+    <div id="rblog_right_column">
+        
+        <div id="rblog_main">
+        
+            <div class="post_section">
+            	
+                <h2> <%= @rPost.post_title %> </h2>
+    			
+        		<strong>Author:</strong> <%= Account.rBlogUsername(@rPost.account_id) %> <strong> | </strong> <%= @rPost.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br />
+                
+              	<p> <%= simple_format(@rPost.post_message) %> </p>
+              	
+		  	</div>
+            
+            <div class="comment_tab">Comments</div>
+                        	
+		</div> <!-- end of main -->
+  		
+  	</div> <!-- end of right column -->
+	
+<% end %>

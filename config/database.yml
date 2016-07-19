@@ -13,21 +13,20 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password:
+  username: Ravi
+  password: Ravi
   host: localhost
+  database: RBlog
 
 development:
   <<: *default
-  database: RBlog_development
-
+  
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: RBlog_test
-
+  
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -49,6 +48,5 @@ test:
 #
 production:
   <<: *default
-  database: RBlog_production
   username: RBlog
   password: <%= ENV['RBLOG_DATABASE_PASSWORD'] %>

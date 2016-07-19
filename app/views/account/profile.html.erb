@@ -1,0 +1,54 @@
+<% content_for :head do %>
+	
+	<title>Profile :: RBlog</title>
+	
+<% end %>
+
+<% content_for :body do %>
+	
+	<div id="rblog_right_column">
+    	
+       	<div id="rblog_main">
+        	
+        	<div class="post_section post_section_form">
+            
+                <h2>Profile</h2>
+                
+                <span class='comment'> <%= link_to((@updateStatus ? 'Cancel' : 'Edit'), {:controller => 'account', :action => 'edit', :updateStatus => !@updateStatus}) %> </span>
+            	
+	        	<% if @user && @user.errors.any? %>
+	        		
+	        		<ul class="error_messages">
+	        			
+	        			<% @user.errors.full_messages.each do |error_message| %>
+	        				
+	        				<li> <%= error_message %> </li>
+	        				
+	        			<% end %>
+	        			
+	        		</ul>
+	        		
+	        	<% end %>
+	        	
+	        	<%= form_for(:account, :url => {:controller => 'account', :action => 'update', :userId => session[:userId]}, :method => 'post') do |form| %>
+	        		
+	        		<%= form.text_field(:first_name, :placeholder => 'First Name', :readonly => !@updateStatus, :maxLength => 25, :value => (@user ? @user.first_name : ''), :class => 'input_username') %>
+	        		<%= form.text_field(:last_name, :placeholder => 'Last Name', :readonly => !@updateStatus, :maxLength => 25, :value => (@user ? @user.last_name : ''), :class => 'input_username') %>
+	        		<%= form.text_field(:username, :placeholder => 'Username', :readonly => !@updateStatus, :maxLength => 15, :value => (@user ? @user.username : ''), :class => 'input_username') %>
+	        		<%= form.text_field(:email_address, :placeholder => 'someone@example.com', :maxLength => 100, :type => 'email', :readonly => !@updateStatus, :value => (@user ? @user.email_address : ''), :class => 'input_email_address') %>
+	        		<%= form.text_field(:mobile_number, :placeholder => 'Mobile Number', :maxLength => 10, :readonly => !@updateStatus, :value => (@user ? @user.mobile_number : ''), :class => 'input_mobile_number') %>
+	        		
+        			<div class="cleaner_h10"></div>
+        			
+	        		<%= form.submit("Save", :type => 'submit', :class => 'submit') if @updateStatus %>
+	        		
+	        	<% end %>
+	        	
+	        </div>
+	        	
+        </div> <!-- end of main -->
+	
+  	</div> <!-- end of right column -->
+
+	    
+<% end %>
