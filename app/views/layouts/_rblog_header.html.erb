@@ -1,0 +1,22 @@
+
+<div id="rblog_header">
+
+	<div id="site_title">
+    	
+    	<h1>
+    		
+    		<% if session[:username] %>
+        		
+        		<%= link_to(simple_format("R<strong>Blog</strong> <span>#{session[:username]}</span>"), {:controller => 'posts', :action => 'my_posts', :user => session[:username]}, :class => 'title') %>
+        		
+        	<% else %>
+        		
+        		<%= link_to(simple_format("R<strong>Blog</strong> <span>This is a blog</span>"), {:controller => 'posts', :action => 'home'}, :class => 'title') %>
+        		
+        	<% end %>
+        	
+    	</h1>
+		
+	</div> <!-- end of site title -->
+	
+</div> <!-- end of header -->  

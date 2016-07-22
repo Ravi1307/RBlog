@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   
   get '/login', :to => 'account#login';
   get '/register', :to => 'account#new';
-  get '/logout', :to => 'account#logout';
   get '/:user/profile', :to => 'account#edit';
+  get '/:user/logout', :to => 'account#logout';
   get '/:user/delete_account', :to => 'account#destroy';
   get '/:user/change_password', :to => 'account#change_password';
   

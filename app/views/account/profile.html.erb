@@ -14,22 +14,10 @@
             
                 <h2>Profile</h2>
                 
-                <span class='comment'> <%= link_to((@updateStatus ? 'Cancel' : 'Edit'), {:controller => 'account', :action => 'edit', :updateStatus => !@updateStatus}) %> </span>
+                <%= link_to(content_tag(:span, (@updateStatus ? 'Cancel' : 'Edit'), :class => 'comment'), {:controller => 'account', :action => 'edit', :updateStatus => !@updateStatus}) %>
             	
-	        	<% if @user && @user.errors.any? %>
-	        		
-	        		<ul class="error_messages">
-	        			
-	        			<% @user.errors.full_messages.each do |error_message| %>
-	        				
-	        				<li> <%= error_message %> </li>
-	        				
-	        			<% end %>
-	        			
-	        		</ul>
-	        		
-	        	<% end %>
-	        	
+                <%= render 'layouts/rblog_messages_error', :errorMessages => @user %>
+                
 	        	<%= form_for(:account, :url => {:controller => 'account', :action => 'update', :userId => session[:userId]}, :method => 'post') do |form| %>
 	        		
 	        		<%= form.text_field(:first_name, :placeholder => 'First Name', :readonly => !@updateStatus, :maxLength => 25, :value => (@user ? @user.first_name : ''), :class => 'input_username') %>

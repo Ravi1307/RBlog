@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     
     if session[:username]
       
-      redirect_to(:controller => 'account', :action => 'show', :user => session[:username]);
+      redirect_to(:controller => 'posts', :action => 'my_posts', :user => session[:username]);
       
     end
     

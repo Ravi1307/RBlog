@@ -14,20 +14,8 @@
         		
         		<h2> <%= ((@currentPage == 'new_post') ? 'New Post' : 'Edit Post') %> </h2>
         		
-	        	<% if @rPost && @rPost.errors.any? %>
-	        		
-	        		<ul class="error_messages">
-	        			
-	        			<% @rPost.errors.full_messages.each do |error_message| %>
-	        				
-	        				<li> <%= error_message %> </li>
-	        				
-	        			<% end %>
-	        			
-	        		</ul>
-	        		
-	        	<% end %>
-	        	
+                <%= render 'layouts/rblog_messages_error', :errorMessages => @rPost %>
+                
         		<%= form_for(:blog_post, :method => 'post', :url => ((@currentPage == 'new_post') ? {:controller => 'posts', :action => 'create', :user => session[:username]} : {:controller => 'posts', :action => 'update', :user => session[:username], :postId => @rPost.id})) do |form| %>
         			
         			<%= form.text_field(:account_id, :placeholder => "Account Id", :type => 'number', :value => session[:userId].to_i, :hidden => true) %>

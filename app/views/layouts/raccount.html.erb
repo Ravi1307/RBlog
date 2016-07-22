@@ -1,104 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   
-  <head>
-  	
-	<%= favicon_link_tag '/assets/rblog_icon.ico' %>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  	<%= yield :head %>
-  	
-  	<script type="text/javascript">
-  		
-  		function togglePasswordType() {
-  			
-  			var password = document.getElementById('input_password');
-		    var passwordImage = document.getElementById('input_password_image');
-		    
-		    if(password.type == 'text') {
-		  		
-		  		passwordImage.src = '/assets/rblog_password_secure';
-		  		password.type = 'password';
-		  		password.focus();
-		  		password.selectionStart = password.value.length;
-		  		
-		  	} else {
-		  		
-		  		password.type = 'text';
-		  		passwordImage.src = '/assets/rblog_password_not_secure';
-		  		password.focus();
-		  		password.selectionStart = password.value.length;
-		  		
-		  	}
-		  	
-		}
-  		
-  	</script>
-  	
-  </head>
+  <%= render 'layouts/rblog_head' %>
   
   <body>
   	
   	<div id="rblog_wrapper">
 		
-		<div id="rblog_menu">
-        	
-        	<% unless @currentPage == 'new' %>
-	        	
-	        	<div id="rblog_menu_account">
-	        		
-	        		<ul>
-	        			<li>
-			        			
-			        		<% unless @currentPage == 'login' %>
-				        		
-		        				<%= link_to((session[:userStatus] ? session[:userStatus] : 'Log In'), {:controller => 'account', :action => (session[:userAction] ? session[:userAction] : 'login')}) %>
-	        					
-	        				<% else %>
-	        					
-	        					<%= link_to('Sign Up', {:controller => 'account', :action => 'new'}) %>
-	        					
-	        				<% end %>
-	        				
-	        			</li>
-	        		</ul>
-	        		
-	        	</div>
-	        	
-        	<% end %>
-        	
-       		<ul>
-           		<li> <%= link_to("Home", {:controller => 'posts', :action => 'home'}) %> </li>
-           		<li> <%= link_to("Sitemap", {:controller => 'posts', :action => 'site_map'}) %> </li>
-           		<li> <%= link_to("About", {:controller => 'posts', :action => 'about'}) %> </li>
-           		<li> <%= link_to("Contact", {:controller => 'posts', :action => 'contact'}) %> </li>
-        	</ul>
-    		
-    	</div> <!-- end of menu -->
-    	
+		<%= render 'layouts/rblog_menu' %>
+		    	
         <div id="rblog_left_column">
-    
-        	<div id="rblog_header">
-        	
-            	<div id="site_title">
-                	
-                	<h1>
-                		
-                		<% if session[:username] %>
-	                		
-	                		<%= link_to(simple_format("R<strong>Blog</strong> <span>#{session[:username]}</span>"), {:controller => 'posts', :action => 'my_posts', :user => session[:username]}, :class => 'title') %>
-	                		
-	                	<% else %>
-	                		
-	                		<%= link_to(simple_format("R<strong>Blog</strong> <span>This is a blog</span>"), {:controller => 'posts', :action => 'home'}, :class => 'title') %>
-	                		
-	                	<% end %>
-	                	
-                	</h1>
-            		
-            	</div> <!-- end of site title -->
-            	
-        	</div> <!-- end of header -->  
-        	
+    		
+        	<%= render 'layouts/rblog_header' %>
         	
         	<div id="rblog_sidebar">
     			
@@ -118,10 +31,8 @@
 
   		<%= yield :body %>
   	    
-		<div class="cleaner_h20"></div>
-  		
-  		<div id="rblog_footer"> Ravikanth, Ruby On Rails Project &reg; 2016 </div>
-  		
+  	    <%= render 'layouts/rblog_footer' %>
+  	    
    </div> <!-- end of wrapper -->
 
   </body>

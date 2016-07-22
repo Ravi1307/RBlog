@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   
-  belongs_to :account; 
+  belongs_to :account;
+  has_many :comments, :dependent => :destroy;
   
   validates :post_title, :presence => true, :uniqueness => true, :length => {:maximum => 200};
   validates :post_message, :presence => true;
