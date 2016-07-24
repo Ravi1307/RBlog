@@ -7,7 +7,7 @@
     		
     		<% if session[:userId] %>
         		
-        		<%= link_to(simple_format("R<strong>Blog</strong> <span>#{session[:username]}</span>"), {:controller => 'posts', :action => 'my_posts', :user => getUsername(session[:userId])}, :class => 'title') %>
+        		<%= link_to(simple_format("R<strong>Blog</strong> <span>#{getUsername(session[:userId])}</span>"), {:controller => 'posts', :action => 'my_posts', :user => getUsername(session[:userId])}, :class => 'title') %>
         		
         	<% else %>
         		

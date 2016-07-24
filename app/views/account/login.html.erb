@@ -1,3 +1,4 @@
+
 <% content_for :head do %>
 	
 	<title>Log In :: RBlog</title>
@@ -17,11 +18,11 @@
 				
                 <%= form_for(:account, :url => {:controller => 'account', :action => 'attempt_login'}) do |form| %>
 	        		
-	        		<%= form.text_field(:email_address, :placeholder => 'someone@example.com', :type => 'email', :maxLength => 100, :required => true, :value => (@user ? @user.email_address : ''), :class => 'input_email_address') %>
+	        		<%= form.text_field(:email_address, :placeholder => 'someone@example.com', :type => 'email', :maxLength => 100, :value => (@user ? @user.email_address : ''), :class => 'input_email_address') %>
 	        		
 	        		<%= content_tag(:div, :class => 'input_container') do %>
 	        			
-	        			<%= form.password_field(:password, :placeholder => 'Password', :autocomplete => 'off', :maxLength => 30, :required => true, :class => 'input_password') %>
+	        			<%= form.password_field(:password, :placeholder => 'Password', :autocomplete => 'off', :maxLength => 30, :class => 'input_password') %>
 	        			<%= link_to(image_tag('/assets/rblog_password_secure.png', :class=>'input_password_image'), "#", :tabindex => '-1', :class => 'toggle_password') %>
 	        			
 	        		<% end %>

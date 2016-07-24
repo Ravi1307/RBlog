@@ -88,11 +88,11 @@ class PostsController < ApplicationController
   
   def home
     
-    @postsLimit = 4;
+    @postsLimit = 5;
     @currentPage = 'home';
     @postsPage = params[:page].to_i;
     @rBlogUser = params[:user] || nil;
-    @postsPageCount = (Post.rUserPostsCount(@rBlogUser) / @postsLimit);
+    @postsPageCount = (Post.rUserPostsCount(@rBlogUser).to_f / @postsLimit).ceil - 1;
     @posts = Post.rRecentPosts(@rBlogUser, @postsLimit, (@postsPage * @postsLimit));
     
   end

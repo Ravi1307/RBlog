@@ -14,10 +14,9 @@
 	
 	<%= content_tag(:p) do %> 
 		
-		<% message = post.post_message.split('\n'); %>
-		<% msg = message.take(5).join('\n') %>
+		<% message = post.post_message.split("\n"); %>
+		<% msg = message.take(5).join("\n") %>
 		<%= simple_format(msg.first(150)); %>
-		
 		<%= link_to(((message.length > 5 || msg.length > 150) ? '...more...' : ''), {:controller => 'posts', :action => 'show', :author => post.account.username, :postId => post.id}, :class => 'more') %>
 		
 	<% end %>

@@ -1,3 +1,4 @@
+
 <% content_for :head do %>
 	
 	<title>Home :: RBlog</title>
@@ -9,9 +10,10 @@
 	<%= content_tag(:div, :id => 'rblog_right_column') do %>
     	
        	<%= content_tag(:div, render(@posts) || content_tag(:h3, 'No posts to display.'), :id => 'rblog_main') %>
-        <%= link_to("Next", {:controller => 'posts', :action => 'home', :user => @rBlogAuthor, :page => (@postsPage + 1)}, :class => 'next') if ((@postsPage >= 0) && (@postsPage < @postsPageCount)) %>
-        <%= link_to("Previous", {:controller => 'posts', :action => 'home', :user => @rBlogAuthor, :page => (@postsPage - 1)}, :class => 'previous') if ((@postsPage > 0 && @postsPage <= @postsPageCount)) %>
-        
+    	<%= link_to("Next", {:controller => 'posts', :action => 'home', :user => @rBlogAuthor, :page => (@postsPage + 1)}, :class => 'next') if ((@postsPage >= 0) && (@postsPage < @postsPageCount)) %>
+    	<%= link_to("Previous", {:controller => 'posts', :action => 'home', :user => @rBlogAuthor, :page => (@postsPage - 1)}, :class => 'previous') if ((@postsPage > 0 && @postsPage <= @postsPageCount)) %>
+    	<%= content_tag(:div, nil, :class => 'cleaner_h60') %>
+	    
   	<% end %>
 	
 <% end %>
