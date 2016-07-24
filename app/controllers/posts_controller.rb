@@ -15,11 +15,14 @@ class PostsController < ApplicationController
   def create
     
     @currentPage = 'new_post';
-    @rPost = Post.new(params.require(:blog_post).permit(:account_id, :post_title, :post_message));
     
-    if @rPost.save
+    user = Account.find(params[:blog_post][:account_id]);
+    
+    @post = user.posts.new(params.require(:blog_post).permit(:post_title, :post_message));
+    
+    if @post.save
       
-      redirect_to(:controller => 'posts', :action => 'my_posts', :user => session[:username]) and return;
+      redirect_to(:controller => 'posts', :action => 'my_posts', :user => user.username) and return;
     
     else
       
@@ -34,7 +37,10 @@ class PostsController < ApplicationController
   def edit
     
     @currentPage = 'edit_post';
-    @rPost = Post.find(params[:postId]);
+    
+    user = Account.find(session[:userId]);
+    
+    @post = user.posts.find(params[:postId]);
     
     render 'new_post';
     
@@ -43,11 +49,14 @@ class PostsController < ApplicationController
   def update
     
     @currentPage = 'edit_post';
-    @rPost = Post.find(params[:postId]);
     
-    if @rPost.update_attributes(params.require(:blog_post).permit(:post_title, :post_message))
+    user = Account.find(params[:blog_post][:account_id]);
+    
+    @post = user.posts.find(params[:postId]);
+    
+    if @post.update_attributes(params.require(:blog_post).permit(:post_title, :post_message))
       
-      redirect_to(:controller => 'posts', :action => 'my_posts', :user => session[:username]) and return;
+      redirect_to(:controller => 'posts', :action => 'my_posts', :user => user.username) and return;
       
     else
       
@@ -60,7 +69,8 @@ class PostsController < ApplicationController
   def my_posts
     
     @currentPage = 'my_posts';
-    @userPostsTitle = Post.rPostsTitle(session[:userId]);
+    
+    @posts = Post.rBlogUserPosts(session[:userId]);
     
   end
   
@@ -78,12 +88,12 @@ class PostsController < ApplicationController
   
   def home
     
-    @rPostsLimit = 4;
+    @postsLimit = 4;
     @currentPage = 'home';
-    @rPostsPage = params[:page].to_i;
-    @rBlogAuthor = params[:author] || nil;
-    @rPostsPagesCount = (Post.rUserPostsCount(@rBlogAuthor) / @rPostsLimit);
-    @rPosts = Post.rRecentPosts(@rBlogAuthor, @rPostsLimit, (@rPostsPage * @rPostsLimit));
+    @postsPage = params[:page].to_i;
+    @rBlogUser = params[:user] || nil;
+    @postsPageCount = (Post.rUserPostsCount(@rBlogUser) / @postsLimit);
+    @posts = Post.rRecentPosts(@rBlogUser, @postsLimit, (@postsPage * @postsLimit));
     
   end
 
@@ -92,14 +102,14 @@ class PostsController < ApplicationController
     redirect_to(:controller => 'posts', :action => 'home') and return unless params[:postId].present?;
     
     @currentPage = 'show';
-    @rPost = Post.find(params[:postId]);
+    @post = Post.find(params[:postId]);
     
   end
 
   def site_map
     
     @currentPage = 'site_map';
-    @rBlog = Post.rBlogSitemap;
+    @users = Account.all;
     
   end
   

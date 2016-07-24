@@ -6,32 +6,28 @@
 
 <% content_for :body do %>
 	
-    <div id="rblog_right_column">
-    
-        <div id="rblog_main">
-            
-            <div class="post_section post_section_form">
+	<%= content_tag(:div, :id => 'rblog_right_column') do %>
+    	
+       	<%= content_tag(:div, :id => 'rblog_main') do %>
+        	
+        	<%= content_tag(:div, :class => 'post_section post_section_form') do %>
             	
-                <h2>Contact Form</h2>
+                <%= content_tag(:h2, 'Contact Form') %>
                 
                 <%= form_for(:contact, :url => {:controller => 'posts', :action => 'send_contact_form'}, :method => 'post') do |form| %>
                 	
-                	<%= form.text_field(:name, :placeholder => "Name", :required => true) %>
-        			<%= form.text_field(:email_address, :placeholder => "someone@example.com", :type => 'email', :required => true) %>
+                	<%= form.text_field(:email_address, :placeholder => "someone@example.com", :type => 'email', :required => true) %>
         			<%= form.text_area(:message, :placeholder => "Message", :required => true) %>
-        			
-        			<div class="cleaner_h10"></div>
-        			
-        			<%= form.submit(:class => "submit", :type => 'submit', :value => 'Submit') %>
+        			<%= content_tag(:div, nil, :class => 'cleaner_h10') %>
+	        		<%= form.submit(:class => "submit", :type => 'submit', :value => 'Submit') %>
         			<%= form.submit(:class => "reset", :type => 'reset', :value => 'Reset') %>
         			
         		<% end %>
-        		
-            </div> 
-        
-        </div> <!-- end of main -->
-    	
-    </div> <!-- end of right column -->
-
+    			
+	        <% end %>
+	       	
+        <% end %>
+		
+  	<% end %>
+	
 <% end %>
-

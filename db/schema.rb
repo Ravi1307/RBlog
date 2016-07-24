@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160721144143) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "username",        limit: 25,  null: false
+    t.string   "username",        limit: 15,  null: false
     t.string   "email_address",   limit: 100, null: false
     t.string   "first_name",      limit: 25
     t.string   "last_name",       limit: 25
@@ -28,14 +28,16 @@ ActiveRecord::Schema.define(version: 20160721144143) do
   add_index "accounts", ["username"], name: "index_accounts_on_username", using: :btree
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "post_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "post_id",         limit: 4
+    t.integer  "account_id",      limit: 4
+    t.text     "comment_message", limit: 65535, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "account_id",   limit: 4
-    t.string   "post_title",   limit: 250,   null: false
+    t.string   "post_title",   limit: 200,   null: false
     t.text     "post_message", limit: 65535, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false

@@ -157,7 +157,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (>= 0.3.13, < 0.5)
   rails (= 4.2.6)
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.4)
   sdoc (~> 0.4.0)
   turbolinks
   tzinfo-data

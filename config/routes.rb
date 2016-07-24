@@ -26,8 +26,13 @@ Rails.application.routes.draw do
   post '/:user/posts/edit', :to => 'posts#update';
   post '/contact', :to => 'posts#send_contact_form';
   
+  post '/:user/posts/comments/new', :to => 'comments#create';
+  
   root 'posts#home';
   
+#  resources :posts do
+#    resources :comments;
+#  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

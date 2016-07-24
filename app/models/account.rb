@@ -14,7 +14,4 @@ class Account < ActiveRecord::Base
   validates :password_confirmation, :presence => true, :on => :create;
   validates :password_confirmation, :presence => true, :on => :changePassword;
   
-  scope :rBlogUsers, lambda { distinct.pluck(:username) }
-  scope :rBlogUsername, lambda { |id| Account.find(id).username }
-  
 end

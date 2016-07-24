@@ -1,0 +1,25 @@
+
+<%= content_tag(:div, :class => 'post_section') do %>
+	
+	<%= content_tag(:h2, link_to(post.post_title, {:controller => 'posts', :action => 'show', :postId => post.id})) %>
+	
+	<%= content_tag(:p) do %>
+		
+		<%= content_tag(:strong, 'Author:') %>
+		<%= post.account.username %>
+		<%= content_tag(:strong, '|') %>
+		<%= post.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %>
+		
+	<% end %>
+	
+	<%= content_tag(:p) do %> 
+		
+		<% message = post.post_message.split('\n'); %>
+		<% msg = message.take(5).join('\n') %>
+		<%= simple_format(msg.first(150)); %>
+		
+		<%= link_to(((message.length > 5 || msg.length > 150) ? '...more...' : ''), {:controller => 'posts', :action => 'show', :author => post.account.username, :postId => post.id}, :class => 'more') %>
+		
+	<% end %>
+	
+<% end %>

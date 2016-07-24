@@ -1,0 +1,7 @@
+
+<%= content_tag(:div, :id => 'rblog_main', :class => 'links link_sitemap') do %>
+	
+	<%= content_tag(:h2, link_to([user_counter + 1, user.username].join('. '), {:controller => 'posts', :action => 'home', :user => user.username}), :class => 'link_my_posts') %>	
+	<%= content_tag(:div, content_tag(:ul, render(:partial => 'user_post', :collection => user.posts, :as => :post) || content_tag(:h5, 'No posts found.'), :class => 'rblog_user_posts'), :id => 'gallery') %>
+    
+<% end %>

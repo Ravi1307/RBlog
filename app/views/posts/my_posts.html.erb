@@ -1,51 +1,21 @@
 <% content_for :head do %>
 	
-	<title> <%= session[:username] %> Posts :: RBlog</title>
+	<title> <%= getUsername(session[:userId]) %> Posts :: RBlog</title>
 	
 <% end %>
 
 <% content_for :body do %>
 	
-    <div id="rblog_right_column">
-	
-		<div id="rblog_main"  class='links'>
-	
-	    	<h2> <%= session[:username] %> Posts </h2>
-	    
-	    	<div id="gallery">
+	<%= content_tag(:div, :id => 'rblog_right_column') do %>
+    	
+       	<%= content_tag(:div, :id => 'rblog_main', :class => 'links') do %>
+    		
+	    	<%= content_tag(:h2, [getUsername(session[:userId]), 'Posts'].join(' ')) %>
+	    	<%= content_tag(:div, content_tag(:ul, render(:partial => 'post_user', :collection => @posts, :as => :post) || content_tag(:h3, 'No posts to display. Create any posts to view.'), :class => 'rblog_user_posts'), :id => 'gallery') %>
 	        	
-	        	<% unless @userPostsTitle && @userPostsTitle.length > 0 %>
-	        		
-	        		<h4>No results found. Create any posts to view.</h4>
-	        		
-	        	<% else %>
-		        		
-		        	<ul class="rblog_user_posts">
-		        		
-		        		<% nTitle = 1; %>
-		        		<% @userPostsTitle.each do |rpost| %>
-		            		
-		            		<li>
-		                		
-		                		<%= link_to(["#{nTitle}.#{rpost.post_title.first(45)}", ((rpost.post_title.length > 45) ? '...' : nil)].join, {:controller => 'posts', :action => 'show', :user => session[:username], :postId => rpost.id}, :class => 'left') %>
-		                		<%= link_to(simple_format("<img src='/assets/rblog_delete', alt='Delete'/>"), {:controller => 'posts', :action => 'destroy', :user => session[:username], :postId => rpost.id}, :class => 'right delete') %>
-		                		<%= link_to(simple_format("<img src='/assets/rblog_edit', alt='Edit'/>"), {:controller => 'posts', :action => 'edit', :user => session[:username], :postId => rpost.id}, :class => 'right edit') %>
-		                		
-		            		</li>
-		            		
-		            		<% nTitle += 1; %>
-		            		
-		            	<% end %>
-		         		
-		        	</ul>
-		    		
-	        	<% end %>
-	        	
-	    	</div> <!-- end of gallery -->
+        <% end %>
+		
+  	<% end %>
 	
-		</div> <!-- end of main -->
-    
-    </div>  <!-- end of right column -->
-
 <% end %>
 

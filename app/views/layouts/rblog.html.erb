@@ -5,56 +5,40 @@
   
   <body>
   	
-  	<div id="rblog_wrapper">
+  	<%= content_tag(:div, :id => 'rblog_wrapper') do %>
 		
 		<%= render 'layouts/rblog_menu' %>
-		
-        <div id="rblog_left_column">
+			
+        <%= content_tag(:div, :id => 'rblog_left_column') do %>
     		
         	<%= render 'layouts/rblog_header' %>
         	
-        	<div id="rblog_sidebar">
-    			
+        	<%= content_tag(:div, :id => 'rblog_sidebar') do %>
+    		
     			<% if @currentPage == 'my_posts' %>
 	    			
-	    			<h4 class='links link_my_posts'> <%= link_to("CREATE NEW POST", {:controller => 'posts', :action => 'new', :user => session[:username]}) %> </h4>
-	                <h4 class='links link_my_posts'> <%= link_to("EDIT PROFILE", {:controller => 'account', :action => 'edit', :user => session[:username]}) %> </h4>
+	    			<%= content_tag(:h4, link_to("CREATE NEW POST", {:controller => 'posts', :action => 'new', :user => getUsername(session[:userId])}), :class => 'links link_my_posts') %>
+	                <%= content_tag(:h4, link_to("EDIT PROFILE", {:controller => 'account', :action => 'edit', :user => getUsername(session[:userId])}), :class => 'links link_my_posts') %>
 	               	
             	<% elsif @currentPage == 'home' || @currentPage == 'show' %>
 	            	
-	            	<% if session[:username] %>
-	            		
-	            		<h4 class='links link_my_posts'> <%= link_to("MY POSTS", {:controller => 'posts', :action => 'my_posts', :user => session[:username]}) %> </h4>
-	            		
-	            	<% end %>
-	            	
-            		<div class="cleaner_h20"></div>
-            		
-	            	<h4>Authors</h4>
-	            	
-	            	<ul class="rblog_list">
-	                	
-	                	<% Account.rBlogUsers.each do |author| %>
-	                		
-	                		<li> <%= link_to(author, {:controller => 'posts', :action => 'home', :author => author}) %> </li>
-	                		
-	                	<% end %>
-	                	
-	            	</ul>
-	            	
+	            	<%= content_tag(:h4, link_to("MY POSTS", {:controller => 'posts', :action => 'my_posts', :user => getUsername(session[:userId])}), :class => 'links link_my_posts') if session[:userId] %>
+	            	<%= content_tag(:div, nil, :class => 'cleaner_h20') %>
+	            	<%= content_tag(:h4, 'Authors') %>
+	            	<%= content_tag(:ul, render(:partial => '/layouts/rblog_user', :collection => getRBlogUsers(), :as => :user), :class => 'rblog_list') %>
+	                
 	            <% end %>
 	            
-            	<div class="cleaner_h60"></div>
-            	
-        	</div> <!-- end of side bar --> 
+            	<%= content_tag(:div, nil, :class => 'cleaner_h60') %>
+        		
+        	<% end %> 
     
-    	</div> <!-- end of left column -->
+    	<% end %>
 
   		<%= yield :body %>
-  	    
   	    <%= render 'layouts/rblog_footer' %>
   	    
-   </div> <!-- end of wrapper -->
+   	<% end %>
 
   </body>
   

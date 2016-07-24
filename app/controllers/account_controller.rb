@@ -22,7 +22,7 @@ class AccountController < ApplicationController
       
       onLogIn(@user);
       
-      RblogMailer.user_registered(@user).deliver_now;
+      RblogMailer.user_registered(@user).deliver_later;
       
       redirect_to(:controller => 'account', :action => 'edit', :user => @user.username, :updateStatus => true) and return;
       
@@ -159,17 +159,15 @@ class AccountController < ApplicationController
     
     session[:userStatus] = 'Log In';
     session[:userAction] = 'login';
-    session[:username] = nil;
     session[:userId] = nil;
     
   end
   
-  def onLogIn(userTemp)
+  def onLogIn(user)
     
     session[:userStatus] = 'Log Out';
     session[:userAction] = 'logout';
-    session[:username] = userTemp.username;
-    session[:userId] = userTemp.id;
+    session[:userId] = user.id;
     
   end
   

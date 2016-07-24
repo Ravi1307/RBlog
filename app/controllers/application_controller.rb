@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   
   def requiresLogIn
     
-    unless session[:username]
+    unless session[:userId]
       
       redirect_to(:controller => 'account', :action => 'login');
       
@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
   
   def userLoggedIn
     
-    if session[:username]
+    if session[:userId]
       
-      redirect_to(:controller => 'posts', :action => 'my_posts', :user => session[:username]);
+      redirect_to(:controller => 'posts', :action => 'my_posts', :user => Account.rBlogUsername(session[:userId]));
       
     end
     

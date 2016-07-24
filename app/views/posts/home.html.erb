@@ -6,47 +6,12 @@
 
 <% content_for :body do %>
 	
-	<div id="rblog_right_column">
+	<%= content_tag(:div, :id => 'rblog_right_column') do %>
     	
-       	<div id="rblog_main">
-        	
-        	<% @rPosts.each do |rPost| %>
-        	
-           		<div class="post_section">
-            		
-               		<h2> <%= link_to(rPost.post_title, {:controller => 'posts', :action => 'show', :postId => rPost.id}) %> </h2>
-                	
-   					<strong>Author:</strong> <%= rPost.account.username %> <strong> | </strong> <%= rPost.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br />
-                	
-               		<p> 
-               			
-               			<% message = rPost.post_message.split("\n"); %>
-               			<% msg = message.take(5).join("\n") %>
-               			<%= simple_format(msg.first(150)); %>
-               			
-               			<%= link_to(((message.length > 5 || msg.length > 150) ? "...more..." : ""), {:controller => 'posts', :action => 'show', :author => rPost.account.username, :postId => rPost.id}, :class => 'more') %>
-               			
-               		</p>
-              		
-            	</div> <!-- end of post section -->
-            
-            <% end %>
-            
-        </div> <!-- end of main -->
-	
-        <% if  (@rPostsPage >= 0) && (@rPostsPage < @rPostsPagesCount) %>
-        	
-        	<%= link_to("Next", {:controller => 'posts', :action => 'home', :author => @rBlogAuthor, :page => (@rPostsPage + 1)}, :class => 'next') %>
-        	
-        <% end %>
+       	<%= content_tag(:div, render(@posts) || content_tag(:h3, 'No posts to display.'), :id => 'rblog_main') %>
+        <%= link_to("Next", {:controller => 'posts', :action => 'home', :user => @rBlogAuthor, :page => (@postsPage + 1)}, :class => 'next') if ((@postsPage >= 0) && (@postsPage < @postsPageCount)) %>
+        <%= link_to("Previous", {:controller => 'posts', :action => 'home', :user => @rBlogAuthor, :page => (@postsPage - 1)}, :class => 'previous') if ((@postsPage > 0 && @postsPage <= @postsPageCount)) %>
         
-        <% if (@rPostsPage > 0 && @rPostsPage <= @rPostsPagesCount)  %>
-        	
-        	<%= link_to("Previous", {:controller => 'posts', :action => 'home', :author => @rBlogAuthor, :page => (@rPostsPage - 1)}, :class => 'previous') %>
-        	
-        <% end %>
-    	
-  	</div> <!-- end of right column -->
-
-	    
+  	<% end %>
+	
 <% end %>

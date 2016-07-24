@@ -6,60 +6,7 @@
 
 <% content_for :body do %>
 	
-    <div id="rblog_right_column">
-    	
-    	<% unless @rBlog %>
-    		
-    		<h4>No authors found.</h4>
-    		
-    	<% else %>
-    		
-    		<% nAuthor = 1; %>
-	    	
-	    	<% @rBlog.each do |author| %>
-	    	
-	        	<div id="rblog_main"  class='links link_sitemap'>
-	        
-	            	<h2 class='link_my_posts'> <%= link_to("#{nAuthor}. #{author.username}", {:controller => 'posts', :action => 'home', :author => author.username}) %> </h2>
-	            
-	            	<div id="gallery">
-	                
-	                	<ul class="rblog_user_posts">
-	                		
-	                		<% unless author.post_ids.length > 0 %>
-	                			
-	                			<li>No posts found.</li>
-    							
-    						<% else %>
-    						
-	                		<% nTitle = 1; %>
-	                		<% author.post_ids.each do |rPostId| %>
-	                			
-	                    		<li>
-	                        		
-	                        		<%= link_to("#{nTitle}. #{Post.rPostTitle(rPostId)}", {:controller => 'posts', :action => 'show', :author => author.username, :postId => rPostId}, :class => 'left') %>
-	                        		
-	                    		</li>
-	                    		
-	                    		<% nTitle += 1; %>
-	                    		
-	                    	<% end %>
-	                 		
-	                 		<% end %>
-	                 		
-	                	</ul>
-	            
-	            	</div> <!-- end of gallery -->
-	        
-	        	</div> <!-- end of main -->
-	        	
-	        	<% nAuthor += 1; %>
-	        	
-	        <% end %>
-    		
-    	<% end %>
-    	    
-    </div>  <!-- end of right column -->
-
+	<%= content_tag(:div, render(:partial => 'user', :collection => @users, :as => :user) || content_tag(:h3, 'No authors found.') , :id => 'rblog_right_column') %>
+    
 <% end %>
 

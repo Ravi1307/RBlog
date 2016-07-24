@@ -1,13 +1,13 @@
 
-<div id="rblog_header">
+<%= content_tag(:div, :id => 'rblog_header') do %>
 
-	<div id="site_title">
+	<%= content_tag(:div, :id => 'site_title') do %>
     	
-    	<h1>
+    	<%= content_tag(:h1) do %>
     		
-    		<% if session[:username] %>
+    		<% if session[:userId] %>
         		
-        		<%= link_to(simple_format("R<strong>Blog</strong> <span>#{session[:username]}</span>"), {:controller => 'posts', :action => 'my_posts', :user => session[:username]}, :class => 'title') %>
+        		<%= link_to(simple_format("R<strong>Blog</strong> <span>#{session[:username]}</span>"), {:controller => 'posts', :action => 'my_posts', :user => getUsername(session[:userId])}, :class => 'title') %>
         		
         	<% else %>
         		
@@ -15,8 +15,8 @@
         		
         	<% end %>
         	
-    	</h1>
+    	<% end %>
 		
-	</div> <!-- end of site title -->
+	<% end %>
 	
-</div> <!-- end of header -->  
+<% end %>  

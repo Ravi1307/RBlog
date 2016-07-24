@@ -1,10 +1,11 @@
 
-<div id="rblog_menu">
+<%= content_tag(:div, :id => 'rblog_menu') do %>
 	
-	<div id="rblog_menu_account">
+	<%= content_tag(:div, :id => 'rblog_menu_account') do %>
 		
-		<ul>
-			<li>
+		<%= content_tag(:ul) do %>
+			
+			<%= content_tag(:li) do %>
         			
         		<% if @currentPage == 'login' %>
 	        		
@@ -12,20 +13,23 @@
 					
 				<% else %>
 					
-					<%= link_to((session[:userStatus] ? session[:userStatus] : 'Log In'), {:controller => 'account', :action => (session[:userAction] ? session[:userAction] : 'login'), :user => session[:username] || ''}) %>
+					<%= link_to((session[:userStatus] ? session[:userStatus] : 'Log In'), {:controller => 'account', :action => (session[:userAction] ? session[:userAction] : 'login'), :user => (session[:userId] ? getUsername(session[:userId]) : nil)}) %>
 					
 				<% end %>
 				
-			</li>
-		</ul>
+			<% end %>
+			
+		<% end %>
 		
-	</div>
+	<% end %>
 	
-	<ul>
-   		<li> <%= link_to("Home", {:controller => 'posts', :action => 'home'}, :id => ((@currentPage == 'home') ? 'current' : 'other')) %> </li>
-   		<li> <%= link_to("Sitemap", {:controller => 'posts', :action => 'site_map'}, :id => ((@currentPage == 'site_map') ? 'current' : 'other')) %> </li>
-   		<li> <%= link_to("About", {:controller => 'posts', :action => 'about'}, :id => ((@currentPage == 'about') ? 'current' : 'other')) %> </li>
-   		<li> <%= link_to("Contact", {:controller => 'posts', :action => 'contact'}, :id => ((@currentPage == 'contact') ? 'current' : 'other')) %> </li>
-	</ul>
+	<%= content_tag(:ul) do %>
+   		
+   		<%= content_tag(:li, link_to("Home", {:controller => 'posts', :action => 'home'}, :id => ((@currentPage == 'home') ? 'current' : 'other'))) %>
+   		<%= content_tag(:li, link_to("Sitemap", {:controller => 'posts', :action => 'site_map'}, :id => ((@currentPage == 'site_map') ? 'current' : 'other'))) %>
+   		<%= content_tag(:li, link_to("About", {:controller => 'posts', :action => 'about'}, :id => ((@currentPage == 'about') ? 'current' : 'other'))) %>
+   		<%= content_tag(:li, link_to("Contact", {:controller => 'posts', :action => 'contact'}, :id => ((@currentPage == 'contact') ? 'current' : 'other'))) %>
+		
+	<% end %>
 	
-</div> <!-- end of menu -->
+<% end %>

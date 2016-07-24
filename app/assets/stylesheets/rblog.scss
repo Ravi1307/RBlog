@@ -3,7 +3,7 @@
 
 body { color: #666; font-family: Helevetica, Arial, sans-serif; font-size: 13px; line-height: 1.5em; background-image: url(/assets/rblog_body.jpg); background-repeat: repeat; }
 img { border: none; }
-p { word-wrap: break-word; margin: 0px; padding: 5px 0px; }
+p { word-wrap: break-word; margin: 0px; padding: 2px 0px; }
 html, body { height: 100%; }
 
 a:hover { color: #666666; text-decoration: none; }
@@ -51,7 +51,7 @@ a, a:link, a:visited { color: #CC0000; }
 
 .post_section { clear: both; position: relative; padding: 0 60px 10px 0; margin: 20px 0; background: url(/assets/rblog_post_bottom.png) bottom left no-repeat; }
 .post_section h2 { margin: 0; padding: 10px 0 10px 0; line-height: 30px; }
-.post_section p { text-align: justify; margin-bottom: 10px; }
+.post_section p { text-align: justify; margin-bottom: 5px; }
 .post_section img { clear: both; display: block; margin: 20px 0; }
 .post_section_form { background: none; margin-top: -10px; }
 .post_section_form_login { background: none; margin-top: 50px;}
@@ -74,27 +74,24 @@ a, a:link, a:visited { color: #CC0000; }
 .links a:hover { color: #666666; text-decoration: blink; }
 .edit { margin-top: -30px; }
 .delete { margin-top: -10px; }
+.comment_post {  }
 
+.input_container { position: relative; padding: 0px; margin: 0px; }
+.input_password_image, .input_password_image_old { position: absolute; right: -50px; bottom: -5px; }
 .input_username { background: url(/assets/rblog_user.png) no-repeat scroll 100% 3px; background-position: left; padding-left:35px; }
 .input_email_address { background: url(/assets/rblog_email.png) no-repeat scroll 100% 3px; background-position: left; padding-left:35px; }
 .input_mobile_number { background: url(/assets/rblog_mobile_number.png) no-repeat scroll 100% 3px; background-position: left; padding-left:35px; }
-.input_password_confirmation { background: url(/assets/rblog_password.png) no-repeat scroll 100% 3px; background-position: left; padding-left:35px; }
-.input_password { background: url(/assets/rblog_password.png) no-repeat scroll 100% 3px; background-position: left; padding-left:35px; }
+.input_password, .input_password_old, .input_password_confirmation { background: url(/assets/rblog_password.png) no-repeat scroll 100% 3px; background-position: left; padding-left:35px; }
 
-.input_container { position: relative; padding: 0px; margin: 0px; }
-.input_password_image { position: absolute; right: -50px; bottom: -5px; }
-
-#input_password_toggle:focus { outline: none; }
-
-textarea { height: 270px; resize: vertical; }
-form { margin-top: 10px; margin-bottom: 80px; margin-left: 10px; margin-right: 20px; }
+form { margin-top: 10px; margin-bottom: 70px; margin-left: 10px; margin-right: 20px; }
 input, textarea { width: 100%; padding: 10px; margin: 10px; border-radius: 10px; }
+textarea { height: 250px; resize: vertical; margin-bottom: 0px; }
 
 h1 { font-size: 40px; font-weight: bold; margin: 0 0 30px 0; padding: 5px 0; color: #000; }
 h2 { font-size: 28px; font-weight: normal; line-height: 28px; margin: 0 0 30px 0; padding: 0; color: #c7a902; }
 h3 { font-size: 21px; margin: 0 0 20px 0; padding: 0; padding: 0; color: #666666; }
 h4 { font-size: 18px; margin: 0 0 20px 0; padding: 0; color: #ffa200; }
-h5 { font-size: 16px; margin: 0 0 10px 0; padding: 0; color: #ffa200;}
+h5 { font-size: 16px; margin: 0 0 10px 0; padding: 0; color: #666666;}
 h6 { font-size: 14px; margin: 0 0 5px 0; padding: 0; color: #ffa200;}
 
 .cleaner_h10 { clear: both; width:100%; height: 10px; }
@@ -105,72 +102,18 @@ h6 { font-size: 14px; margin: 0 0 5px 0; padding: 0; color: #ffa200;}
 .cleaner_h60 { clear: both; width:100%; height: 60px; }
 
 
+.comment_tab { padding: 10px 0; margin: 40px 0 30px 0; border-bottom: 1px dashed #666; font-size: 20px; font-weight: bold; }
+.comment_section { clear: both; margin-bottom: 30px; width: 460px; }
 
-
-
-
-
-
-
-
-
-#rblog_new_post a span { font-size: 12px; margin-top: 5px; letter-spacing: 3px; }
-
-.margin_r30 { margin-right: 30px; }
-
-.vertical_divider { border-right: 1px solid #d9d9d9; }
-.horizontal_divider {  border-bottom: 1px solid #d9d9d9; }
-
-.float_l { float: left; }
-.float_r { float: right; }
-
-.image_wrapper { display: inline-block; padding: 8px; border: 1px solid #999; background: #ffffff; margin-bottom: 10px; }
-
-.fl_img { float: left; margin: 3px 30px 15px 0; }
-.fr_img { float: right; margin: 3px 0 15px 30px; }
-
-blockquote { font-style: italic; margin-left: 10px;}
-cite { font-weight: bold; }
-cite span { color: #8da332; }
-em { color: #5d6d1e; }
-
-.button a { clear: both; display: block; width: 82px; height: 23px; padding: 3px 0 0 0; margin-top: 15px; background: url(/assets/rblog_button.png) no-repeat; color: #000; font-weight: bold; text-align: center; text-decoration: none; }
-.button a:hover { color: #fff; background: url(/assets/rblog_button_hover.png) no-repeat; }
-
-#comment_section { clear: both; margin-bottom: 60px; width: 460px; }
-
-.first_level { margin: 0; padding: 0; }
-
-.comment_tab { padding: 10px 0; margin: 40px 0 40px 0; border-bottom: 1px dashed #666; font-size: 20px; font-weight: bold; }
-
-.comments { list-style: none; }
+.comments { list-style: none; margin: 0; padding: 0; }
 .comments li { margin-bottom: 10px; list-style:none; }
-.comments li .commentbox1 { border: 1px solid #dddddd;  background: #eeeeee; }
-.comments li .commentbox2 { border: 1px solid #dddddd;  background: #f6f6f6; }
-.comments li .comment_box { clear: both; width:100%; padding: 15px;  }
+.comments li .comment_box { clear: both; width:100%; padding: 15px; border: 1px solid #dddddd;  background: #eeeeee; }
 
-.comment_box .gravatar { float: left; width: 50px; margin-right: 15px; background: #fff; }
-.comment_box .gravatar img { margin: 0; width: 50px; height: 50px; }
-.comment_box .comment_text { margin: 0 0 0 65px; }
-.comment_box .comment_text p { margin: 0; }
-
-.comment_text .comment_author { font-size: 14px; font-weight: bold; color: #781919; margin-bottom: 10px; }
-.comment_text .date { font-size: 12px; font-weight: normal; color: #333; padding-left: 10px; }
-.comment_text .time { font-size: 12px; font-weight: normal; color: #333; padding-left: 10px; }
-.comment_text .reply a { display: block; clear: both; float: right; padding: 1px 10px; height: 24px; text-align: center; background: #3694ab; border: 1px solid #fff; color: #fff; } 
+.comment_box .comment_author { font-size: 14px; font-weight: bold; color: #781919; margin-bottom: 10px; }
+.comment_box .comment_datetime { font-size: 12px; font-weight: normal; color: #333; padding-left: 10px; }
 
 #comment_form { clear: both; }
-#comment_form h3 { font-size: 20px; border-bottom: 1px dotted #666; margin-bottom: 15px; padding-bottom: 10px; }
 #comment_form form { padding: 20px; background-color: #eeeeee; border: 1px solid #dddddd; }
-#comment_form textarea { background:#FFFFFF none repeat fixed 0 0; border: 1px solid #CCC; display:block; font-size:1.1em; height:150px; margin-top:5px; padding:5px; width: 360px; }
-#comment_form .form_row { width: 100%; margin-bottom: 15px; }
-#comment_form form input { margin-top: 5px; width: 200px; background:#FFFFFF none repeat fixed 0 0; border: 1px solid #CCC; }
-#comment_form .submit_btn { width: 80px; padding: 5px 10px; background: #EEEEEE; border: 1px solid #AAAAAA; color: #666666; }
-
-.service_box { margin-bottom: 40px; }
-.service_box .left { float: left; width: 120px; height: 120px; }
-.service_box .left img { width: 120px; height: 120px; }
-.service_box .right { float: right; width: 360px; }
-.service_box ol li { list-style: decimal-leading-zero; margin-bottom: 5px; }
-.service_box ol li a { color: #058edc; }
+#comment_form form textarea { background:#FFFFFF none repeat fixed 0 0; border: 1px solid #CCC; display: block; font-size: 1.1em; height: 100px; margin-top: 5px; margin-bottom: 5px; padding: 5px; width: 92%; }
+#comment_form form input { margin-top: 5px; width: 150px; background:#FFFFFF none repeat fixed 0 0; border: 1px solid #CCC; }
 

@@ -1,3 +1,4 @@
+
 <% content_for :head do %>	
 	
 	<title> <%= ((@currentPage == 'new_post') ? 'NewPost' : 'EditPost') %> :: RBlog</title>
@@ -6,32 +7,29 @@
 
 <% content_for :body do %>
 	
-    <div id="rblog_right_column">
-        
-        <div id="rblog_main">
-        
-        	<div class="post_section post_section_form">
-        		
-        		<h2> <%= ((@currentPage == 'new_post') ? 'New Post' : 'Edit Post') %> </h2>
-        		
-                <%= render 'layouts/rblog_messages_error', :errorMessages => @rPost %>
-                
-        		<%= form_for(:blog_post, :method => 'post', :url => ((@currentPage == 'new_post') ? {:controller => 'posts', :action => 'create', :user => session[:username]} : {:controller => 'posts', :action => 'update', :user => session[:username], :postId => @rPost.id})) do |form| %>
+	<%= content_tag(:div, :id => 'rblog_right_column') do %>
+    	
+       	<%= content_tag(:div, :id => 'rblog_main') do %>
+        	
+        	<%= content_tag(:div, :class => 'post_section post_section_form') do %>
+            	
+                <%= content_tag(:h2, ((@currentPage == 'new_post') ? 'New Post' : 'Edit Post')) %>
+                <%= content_tag(:ul, render(:partial => 'layouts/rblog_error_messages', :collection => (@post ? @post.errors.full_messages : nil), :as => :errorMessage), :class => 'error_messages') %>
+				
+        		<%= form_for(:blog_post, :method => 'post', :url => ((@currentPage == 'new_post') ? {:controller => 'posts', :action => 'create', :user => getUsername(session[:userId])} : {:controller => 'posts', :action => 'update', :user => @post.account.username, :postId => @post.id})) do |form| %>
         			
-        			<%= form.text_field(:account_id, :placeholder => "Account Id", :type => 'number', :value => session[:userId].to_i, :hidden => true) %>
-        			<%= form.text_field(:post_title, :placeholder => "Blog Post Title", :value => (@rPost ? @rPost.post_title : '')) %>
-        			<%= form.text_area(:post_message, :placeholder => "Blog Post Message", :value => (@rPost ? @rPost.post_message : '')) %>
-        			
-        			<div class="cleaner_h10"></div>
-        			
-        			<%= form.submit(:class => "submit", :value => ((@currentPage == 'new_post') ? 'Post' : 'Update')) %>
+        			<%= form.text_field(:account_id, :placeholder => "Account Id", :type => 'number', :hidden => true, :value => (@post ? @post.account_id : session[:userId].to_i)) %>
+        			<%= form.text_field(:post_title, :placeholder => "Post Title", :autocomplete => 'off', :value => (@post ? @post.post_title : '')) %>
+        			<%= form.text_area(:post_message, :placeholder => "Post Message", :value => (@post ? @post.post_message : '')) %>
+        			<%= content_tag(:div, nil, :class => 'cleaner_h10') %>
+	        		<%= form.submit(:class => "submit", :value => ((@currentPage == 'new_post') ? 'Post' : 'Update')) %>
         			
         		<% end %>
-        		
-        	</div>
-        	
-        </div> <!-- end of main -->
-        
-    </div> <!-- end of right column -->
+    			
+	        <% end %>
+	       	
+        <% end %>
+		
+  	<% end %>
 	
 <% end %>

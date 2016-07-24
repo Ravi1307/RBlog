@@ -5,36 +5,35 @@
   
   <body>
   	
-  	<div id="rblog_wrapper">
+  	<%= content_tag(:div, :id => 'rblog_wrapper') do %>
 		
 		<%= render 'layouts/rblog_menu' %>
 		    	
-        <div id="rblog_left_column">
+        <%= content_tag(:div, :id => 'rblog_left_column') do %>
     		
         	<%= render 'layouts/rblog_header' %>
         	
-        	<div id="rblog_sidebar">
+        	<%= content_tag(:div, :id => 'rblog_sidebar') do %>
     			
     			<% if @currentPage == 'profile' && @updateStatus == false %>
 	    			
-	            	<h4 class='links link_my_posts'> <%= link_to("MY POSTS", {:controller => 'posts', :action => 'my_posts', :user => session[:username]}) %> </h4>
-	            	<h4 class='links link_my_posts'> <%= link_to("CHANGE PASSWORD", {:controller => 'account', :action => 'change_password'}) %> </h4>
-	            	<h4 class="link_my_posts links"><%= link_to("DELETE ACCOUNT", {:controller => 'account', :action => 'destroy', :userId => session[:userId]}) %> </h4>
+	            	<%= content_tag(:h4, link_to("MY POSTS", {:controller => 'posts', :action => 'my_posts', :user => getUsername(session[:userId])}), :class => 'links link_my_posts') %>
+	            	<%= content_tag(:h4, link_to("CHANGE PASSWORD", {:controller => 'account', :action => 'change_password'}), :class => 'links link_my_posts') %>
+	            	<%= content_tag(:h4, link_to("DELETE ACCOUNT", {:controller => 'account', :action => 'destroy', :user => getUsername(session[:userId]), :userId => session[:userId]}), :class => 'links link_my_posts') %>
 	            	
             	<% end %>
             	
-           </div> <!-- end of side bar -->
+           <% end %>
             
-        	<div class="cleaner_h60"></div>
+        	<%= content_tag(:div, nil, :class => 'cleaner_h60') %>
     
-    	</div> <!-- end of left column -->
+    	<% end %>
 
   		<%= yield :body %>
-  	    
   	    <%= render 'layouts/rblog_footer' %>
   	    
-   </div> <!-- end of wrapper -->
-
+   	<% end %>
+	
   </body>
   
 </html>

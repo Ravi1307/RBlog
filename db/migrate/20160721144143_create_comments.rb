@@ -5,10 +5,14 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
 
       t.references :post;
-      t.text :comment, :null => false;
+      t.references :account;
+      t.text :comment_message, :null => false;
       t.timestamps :null => false;
       
     end
+
+    add_index(:comments, :account_id);
+    add_index(:comments, :post_id);
     
   end
   

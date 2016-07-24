@@ -6,37 +6,40 @@
 
 <% content_for :body do %>
 	
-	<div id="rblog_right_column">
+	<%= content_tag(:div, :id => 'rblog_right_column') do %>
     	
-       	<div id="rblog_main">
+       	<%= content_tag(:div, :id => 'rblog_main') do %>
         	
-        	<div class="post_section post_section_form">
-            
-                <h2>Sign Up Form</h2>
-                
-                <%= render 'layouts/rblog_messages_error', :errorMessages => @user %>
-                
+        	<%= content_tag(:div, :class => 'post_section post_section_form_login') do %>
+            	
+                <%= content_tag(:h2, 'Sign Up Form') %>
+                <%= content_tag(:ul, render(:partial => 'layouts/rblog_error_messages', :collection => (@user ? @user.errors.full_messages : nil), :as => :errorMessage), :class => 'error_messages') %>
+				
 	        	<%= form_for(:account, :url => {:controller => 'account', :action => 'create'}) do |form| %>
 	        		
 	        		<%= form.text_field(:username, :placeholder => 'Username', :maxLength => 15, :type => 'text', :value => (@user ? @user.username : ''), :class => 'input_username') %>
 	        		<%= form.text_field(:email_address, :placeholder => 'someone@example.com', :maxLength => 100, :type => 'email', :value => (@user ? @user.email_address : ''), :class => 'input_email_address') %>
-	        		<div class='input_container'> <%= form.password_field(:password, :placeholder => 'Password', :class => 'input_password') %> <%= link_to(image_tag('/assets/rblog_password_secure.png', :class=>'input_password_image', :id=>'input_password', :alt=>'secure'), "#", :tabindex => '-1', :onclick => "return togglePassword('input_password')") %> </div>
-	        		<%= form.password_field(:password_confirmation, :placeholder => 'Password Confirmation', :maxLength => 30, :class => 'input_password_confirmation') %>
-        			
-        			<div class="cleaner_h10"></div>
-        			
+	        		
+	        		<%= content_tag(:div, :class => 'input_container') do %>
+	        			
+	        			<%= form.password_field(:password, :placeholder => 'Password', :autocomplete => 'off', :maxLength => 30, :required => true, :class => 'input_password') %>
+	        			<%= link_to(image_tag('/assets/rblog_password_secure.png', :class=>'input_password_image'), "#", :tabindex => '-1', :class => 'toggle_password') %>
+	        			
+	        		<% end %>
+	        		
+	        		<%= form.password_field(:password_confirmation, :placeholder => 'Password Confirmation', :autocomplete => 'off', :maxLength => 30, :class => 'input_password_confirmation') %>
+        			<%= content_tag(:div, nil, :class => 'cleaner_h10') %>
 	        		<%= form.submit("Reset", :type => 'reset', :class => 'reset') %>
 	        		<%= form.submit("Register", :type => 'submit', :class => 'submit') %>
 	        		
 	        	<% end %>
 	        	
-    			<div class="cleaner_h10"></div>
+	        	<%= content_tag(:div, nil, :class => 'cleaner_h10') %>
     			
-	        </div>
-	        	
-        </div> <!-- end of main -->
+	        <% end %>
+	       	
+        <% end %>
+		
+  	<% end %>
 	
-  	</div> <!-- end of right column -->
-
-	    
 <% end %>

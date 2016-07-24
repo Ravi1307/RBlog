@@ -1,0 +1,2 @@
+
+<%= content_tag(:li, link_to([post_counter + 1, post.post_title].join('. '), {:controller => 'posts', :action => 'show', :author => post.account.username, :postId => post.id}, :class => 'left')) %>
