@@ -14,4 +14,11 @@ class Account < ActiveRecord::Base
   validates :password_confirmation, :presence => true, :on => :create;
   validates :password_confirmation, :presence => true, :on => :changePassword;
   
+  
+  def generatePasswordResetToken
+    
+    update_column(:password_reset_token, SecureRandom.urlsafe_base64);
+    
+  end
+  
 end

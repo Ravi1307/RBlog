@@ -1,7 +1,7 @@
 class AccountController < ApplicationController
   
-  before_action :requiresLogIn, :except => [:new, :login, :attempt_login, :create];
-  before_action :userLoggedIn, :only => [:login, :attempt_login, :new, :create];
+  before_action :requiresLogIn, :only => [:logout, :edit, :update, :change_password, :update_password, :destroy];
+  before_action :userLoggedIn, :except => [:logout, :edit, :update, :change_password, :update_password, :destroy];
   
   layout 'raccount';
   
@@ -154,6 +154,81 @@ class AccountController < ApplicationController
     logout;
     
   end
+  
+  def forgot_password
+    
+    @currentPage = 'forgot_password';
+    
+  end
+  
+  def forgot_password_request
+    
+    @currentPage = 'forgot_password';
+    
+    @user = Account.find_by(params.require(:account).permit(:email_address));
+    
+    if @user && @user.generatePasswordResetToken
+      
+      RblogMailer.user_password_reset(@user).deliver_later;
+      
+      @user.errors[:base] = 'Please follow the instructions sent to your mail.';
+      
+    else
+      
+      @user = Account.new(params.require(:account).permit(:email_address));
+      @user.errors[:base] = 'There is no user with this email address in the system.';
+      
+    end
+    
+    render 'forgot_password';
+    
+  end
+  
+  def password_reset_expired
+    
+    @currentPage = 'password_reset_expired';
+    
+  end
+  
+  def password_reset
+    
+    @currentPage = 'password_reset';
+    
+    user = Account.find_by(password_reset_token: params[:token]);
+    
+    redirect_to(:controller => 'account', :action => 'password_reset_expired') and return unless user;
+    
+    @token = user.password_reset_token;
+    
+  end
+
+  def password_reset_request
+    
+    @currentPage = 'password_reset';
+    @user = Account.find_by(password_reset_token: params[:token]);
+    
+    redirect_to(:controller => 'account', :action => 'password_reset_expired') and return unless @user;
+    
+    @user.attributes = params.require(:account).permit(:password, :password_confirmation, :password_reset_token);
+    
+    if @user.save(:context => :changePassword)
+      
+      @user.errors[:base] = 'Your password has been changed. Please sign in.'
+      
+      redirect_to(:controller => 'account', :action => 'login') and return;
+      
+    else
+      
+      @token = params[:token];
+      
+      render 'password_reset';
+      
+    end
+    
+  end
+  
+  
+  private
   
   def onLogOut
     

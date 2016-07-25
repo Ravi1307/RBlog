@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721144143) do
+ActiveRecord::Schema.define(version: 20160725050437) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "username",        limit: 15,  null: false
-    t.string   "email_address",   limit: 100, null: false
-    t.string   "first_name",      limit: 25
-    t.string   "last_name",       limit: 25
-    t.string   "mobile_number",   limit: 10
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "password_digest", limit: 255, null: false
+    t.string   "username",             limit: 15,  null: false
+    t.string   "email_address",        limit: 100, null: false
+    t.string   "first_name",           limit: 25
+    t.string   "last_name",            limit: 25
+    t.string   "mobile_number",        limit: 10
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "password_digest",      limit: 255, null: false
+    t.string   "password_reset_token", limit: 255
   end
 
   add_index "accounts", ["email_address"], name: "index_accounts_on_email_address", using: :btree

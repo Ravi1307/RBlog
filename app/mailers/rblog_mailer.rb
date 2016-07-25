@@ -22,4 +22,12 @@ class RblogMailer < ApplicationMailer
     
   end
   
+  def user_password_reset(user)
+    
+    @user = user;
+    
+    mail to: @user.email_address;
+    
+  end
+  
 end

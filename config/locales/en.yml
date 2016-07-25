@@ -21,15 +21,17 @@
 
 en:
   
-  hello: "Hello world"
-  
   rblog_mailer:
     
     contact_form:
-      subject: "RBlog Contact Form!"
+      subject: 'RBlog Contact Form!'
       
     
     user_registered:
-      subject: "RBlog Registration Complete!"
+      subject: 'RBlog Registration Complete!'
     
-    
+    user_password_reset:
+      subject: 'RBlog Password Reset!'
+      
+
+

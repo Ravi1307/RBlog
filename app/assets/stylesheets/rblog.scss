@@ -54,13 +54,13 @@ a, a:link, a:visited { color: #CC0000; }
 .post_section p { text-align: justify; margin-bottom: 5px; }
 .post_section img { clear: both; display: block; margin: 20px 0; }
 .post_section_form { background: none; margin-top: -10px; }
-.post_section_form_login { background: none; margin-top: 50px;}
+.post_section_form_login { background: none; margin-top: 30px;}
 
 .post_section .comment { position: absolute; top: -10px; right: 0px; width: 70px; height: 42px; text-align: center; padding-top: 10px; font-size: 16px; font-weight: bold; background: url(/assets/rblog_comment.png) no-repeat; }
 .post_section .comment a { color: #333; text-decoration: none; }
 .post_section .comment_tab { padding: 10px 0; margin: 40px 0 20px 0; border-bottom: 1px dashed #666; font-size: 20px; font-weight: bold; }
 
-.link_my_posts { padding-top: 10px; }
+.link_my_posts, .forgot_password { padding-top: 10px; }
 .link_sitemap { margin-top: -20px; }
 .error_messages li { color: #CC0000; }
 .next { float: right; margin-right: 65px; }
@@ -68,13 +68,14 @@ a, a:link, a:visited { color: #CC0000; }
 .more { margin-top: -7px; float: right; text-decoration: none; }
 .reset { width: auto; float: left; border-radius: 20px; padding: 10px; }
 .next, .previous { color: #781919; font-size: 20px; font-style: italic; }
-.links a, .links a:link, a:visited { color: #CC0000; text-decoration: none; }
-.link_my_posts a, .link_my_posts a:link { color: #ffa200; }
+.links a, .links a:link, a:visited, { color: #CC0000; text-decoration: none; }
+.link_my_posts a, .link_my_posts a:link, .forgot_password, .forgot_password:link, .forgot_password:visited { color: #ffa200; }
 .submit { width: auto; float: right; margin-right: -30px; border-radius: 20px; padding: 10px; }
-.links a:hover { color: #666666; text-decoration: blink; }
+.links a:hover, .forgot_password:hover { color: #666666; text-decoration: blink; }
 .edit { margin-top: -30px; }
 .delete { margin-top: -10px; }
-.comment_post {  }
+.forgot_password { float: right; margin-right: 130px; font-size: 18px; text-decoration: none; }
+.password_reset { margin-right: 100px; margin-top: 20px; }
 
 .input_container { position: relative; padding: 0px; margin: 0px; }
 .input_password_image, .input_password_image_old { position: absolute; right: -50px; bottom: -5px; }
