@@ -32,7 +32,7 @@
       		<%= content_tag(:div, :class => 'section_comments', :hidden => true) do %>
       		    
       		    <%= content_tag(:div, content_tag(:ol, render(@post.comments), :class => 'comments', :id => 'new_comment'), :class => 'comment_section') %>
-            	<%= render('comments/comment_form', :post => @post) %>
+            	<%= render('comments/comment_form', :post => @post) if session[:userId] %>
             	
             <% end %>
             

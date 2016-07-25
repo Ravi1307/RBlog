@@ -3,7 +3,7 @@
 	
         <%= content_tag(:div, :class => 'comment_box') do %>
     		
-        	<%= content_tag(:span, comment.post.account.username, :class => 'comment_author') %>
+        	<%= content_tag(:span, getUsername(comment.account_id), :class => 'comment_author') %>
         	<%= content_tag(:span, time_ago_in_words(comment.created_at).concat(' ago'), :class => 'comment_datetime') %>
         	
             <%= content_tag(:p, comment.comment_message) %>
