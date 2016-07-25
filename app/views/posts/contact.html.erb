@@ -15,7 +15,7 @@
             	
                 <%= content_tag(:h2, 'Contact Form') %>
                 
-                <%= form_for(:contact, :url => {:controller => 'posts', :action => 'send_contact_form'}, :method => 'post') do |form| %>
+                <%= form_for(:contact, :url => {:controller => 'posts', :action => 'send_contact_form'}, :method => :post) do |form| %>
                 	
                 	<%= form.text_field(:email_address, :placeholder => "someone@example.com", :type => 'email', :required => true) %>
         			<%= form.text_area(:message, :placeholder => "Message", :required => true) %>

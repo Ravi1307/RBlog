@@ -22,7 +22,7 @@ class AccountController < ApplicationController
       
       onLogIn(@user);
       
-      RblogMailer.user_registered(@user).deliver_later;
+      RblogMailer.user_registered(@user).deliver_now;
       
       redirect_to(:controller => 'account', :action => 'edit', :user => @user.username, :updateStatus => true) and return;
       
@@ -169,7 +169,7 @@ class AccountController < ApplicationController
     
     if @user && @user.generatePasswordResetToken
       
-      RblogMailer.user_password_reset(@user).deliver_later;
+      RblogMailer.user_password_reset(@user).deliver_now;
       
       @user.errors[:base] = 'Please follow the instructions sent to your mail.';
       

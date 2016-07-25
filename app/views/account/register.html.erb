@@ -16,7 +16,7 @@
                 <%= content_tag(:h2, 'Sign Up Form') %>
                 <%= content_tag(:ul, render(:partial => 'layouts/rblog_error_messages', :collection => (@user ? @user.errors.full_messages : nil), :as => :errorMessage), :class => 'error_messages') %>
 				
-	        	<%= form_for(:account, :url => {:controller => 'account', :action => 'create'}) do |form| %>
+	        	<%= form_for(:account, :url => {:controller => 'account', :action => 'create'}, :method => :post) do |form| %>
 	        		
 	        		<%= form.text_field(:username, :placeholder => 'Username', :maxLength => 15, :type => 'text', :value => (@user ? @user.username : ''), :class => 'input_username') %>
 	        		<%= form.text_field(:email_address, :placeholder => 'someone@example.com', :maxLength => 100, :type => 'email', :value => (@user ? @user.email_address : ''), :class => 'input_email_address') %>

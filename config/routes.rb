@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/register', :to => 'account#new';
   get '/:user/profile', :to => 'account#edit';
   get '/:user/logout', :to => 'account#logout';
-  get '/:user/delete_account', :to => 'account#destroy';
   get '/forgot_password', :to => 'account#forgot_password';
   get '/password_reset/:token', :to => 'account#password_reset';
   get '/:user/change_password', :to => 'account#change_password';
@@ -16,6 +15,8 @@ Rails.application.routes.draw do
   post '/:user/change_password', :to => 'account#update_password';
   post '/forgot_password', :to => 'account#forgot_password_request';
   post '/password_reset/:token', :to => 'account#password_reset_request';
+  
+  delete '/:user/delete_account', :to => 'account#destroy';
   
   get '/posts', :to => 'posts#home';
   get '/about', :to => 'posts#about';

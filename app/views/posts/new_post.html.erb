@@ -16,7 +16,7 @@
                 <%= content_tag(:h2, ((@currentPage == 'new_post') ? 'New Post' : 'Edit Post')) %>
                 <%= content_tag(:ul, render(:partial => 'layouts/rblog_error_messages', :collection => (@post ? @post.errors.full_messages : nil), :as => :errorMessage), :class => 'error_messages') %>
 				
-        		<%= form_for(:blog_post, :method => 'post', :url => ((@currentPage == 'new_post') ? {:controller => 'posts', :action => 'create', :user => getUsername(session[:userId])} : {:controller => 'posts', :action => 'update', :user => @post.account.username, :postId => @post.id})) do |form| %>
+        		<%= form_for(:blog_post, :method => :post, :url => ((@currentPage == 'new_post') ? {:controller => 'posts', :action => 'create', :user => getUsername(session[:userId])} : {:controller => 'posts', :action => 'update', :user => @post.account.username, :postId => @post.id})) do |form| %>
         			
         			<%= form.text_field(:account_id, :placeholder => "Account Id", :type => 'number', :hidden => true, :value => (@post ? @post.account_id : session[:userId].to_i)) %>
         			<%= form.text_field(:post_title, :placeholder => "Post Title", :autocomplete => 'off', :value => (@post ? @post.post_title : '')) %>

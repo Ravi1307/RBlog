@@ -16,7 +16,7 @@
                 <%= content_tag(:h2, 'Log In Form') %>
                 <%= content_tag(:ul, render(:partial => 'layouts/rblog_error_messages', :collection => (@user ? @user.errors.full_messages : nil), :as => :errorMessage), :class => 'error_messages') %>
 				
-                <%= form_for(:account, :url => {:controller => 'account', :action => 'attempt_login'}, :method => 'post') do |form| %>
+                <%= form_for(:account, :url => {:controller => 'account', :action => 'attempt_login'}, :method => :post) do |form| %>
 	        		
 	        		<%= form.text_field(:email_address, :placeholder => 'someone@example.com', :type => 'email', :maxLength => 100, :value => (@user ? @user.email_address : ''), :class => 'input_email_address') %>
 	        		

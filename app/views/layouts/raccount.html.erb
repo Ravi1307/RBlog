@@ -20,7 +20,7 @@
 	    			
 	            	<%= content_tag(:h4, link_to("MY POSTS", {:controller => 'posts', :action => 'my_posts', :user => getUsername(session[:userId])}), :class => 'links link_my_posts') %>
 	            	<%= content_tag(:h4, link_to("CHANGE PASSWORD", {:controller => 'account', :action => 'change_password'}), :class => 'links link_my_posts') %>
-	            	<%= content_tag(:h4, link_to("DELETE ACCOUNT", {:controller => 'account', :action => 'destroy', :user => getUsername(session[:userId]), :userId => session[:userId]}), :class => 'links link_my_posts') %>
+	            	<%= content_tag(:h4, link_to("DELETE ACCOUNT", {:controller => 'account', :action => 'destroy', :user => getUsername(session[:userId]), :userId => session[:userId]}, :method => :delete, :data => {:confirm => 'Are you sure?'}), :class => 'links link_my_posts') %>
 	            	
             	<% end %>
             	

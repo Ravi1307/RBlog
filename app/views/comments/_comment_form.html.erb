@@ -1,7 +1,7 @@
 
 <%= content_tag(:div, :id => 'comment_form') do %>
     
-    <%= form_for(:comment, :url => {:controller => 'comments', :action => 'create', :user => session[:userId]}, :method => 'post', :remote => true) do |form| %>
+    <%= form_for(:comment, :url => {:controller => 'comments', :action => 'create', :user => session[:userId]}, :method => :post, :remote => true) do |form| %>
         
         <%= form.text_field(:post_id, :hidden => true, :value => post.id) %>
         <%= form.text_field(:account_id, :hidden => true, :value => session[:userId]) %>
